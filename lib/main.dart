@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import './question.dart';
 import './answer.dart';
+import './reset.dart';
 
 void main() => runApp(MyApp());
 
@@ -15,16 +16,22 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   var _questionIndex = 0;
 
+  void _reset() {
+    setState(() {
+      _questionIndex = 0;
+    });
+  }
+
   void _answerQuestion() {
     setState(() {
-      _questionIndex = _questionIndex + 1;
+      if (_questionIndex < 2) _questionIndex++;
     });
     print(_questionIndex);
   }
 
   @override
   Widget build(BuildContext context) {
-    var questions = [
+    const questions = [
       {
         'questionText': 'What\'s your favorite color?',
         'answers': ['Black', 'Red', 'Green', 'White'],
@@ -54,6 +61,7 @@ class _MyAppState extends State<MyApp> {
             }).toList()
           ],
         ),
+        floatingActionButton: Reset(_reset),
       ),
     );
   }
