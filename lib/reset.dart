@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class Reset extends StatelessWidget {
-  final VoidCallback selectHandler;
+  final VoidCallback resetHandler;
 
-  Reset(this.selectHandler);
+  Reset(this.resetHandler);
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +14,7 @@ class Reset extends StatelessWidget {
         backgroundColor: Colors.pinkAccent,
         foregroundColor: Colors.grey[200],
         elevation: 5,
-        onPressed: selectHandler,
+        onPressed: resetHandler,
         child: const Icon(Icons.restore),
       ),
     );
