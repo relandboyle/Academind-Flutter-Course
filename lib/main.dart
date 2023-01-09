@@ -37,7 +37,7 @@ class _MyAppState extends State<MyApp> {
     {
       'questionText': 'Who\'s your favorite instructor?',
       'answers': [
-        {'text': 'Max', 'score': 10},
+        {'text': 'Max', 'score': 1},
         {'text': 'Max', 'score': 20},
         {'text': 'Max', 'score': 30},
         {'text': 'Max', 'score': 40},
@@ -90,7 +90,7 @@ class _MyAppState extends State<MyApp> {
                     questionIndex: _questionIndex,
                     questions: _questions,
                   )
-                : Result(_totalScore),
+                : Result(_totalScore, _reset),
             CText(_inputText),
           ],
         ),
