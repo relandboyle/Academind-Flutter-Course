@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import './quiz.dart';
 import './result.dart';
 import './reset.dart';
+import 'c-text.dart';
 
 void main() => runApp(MyApp());
 
@@ -20,8 +21,8 @@ class _MyAppState extends State<MyApp> {
       'answers': [
         {'text': 'Black', 'score': 10},
         {'text': 'Red', 'score': 5},
-        {'text': 'Black', 'score': 3},
-        {'text': 'Black', 'score': 1},
+        {'text': 'Blue', 'score': 3},
+        {'text': 'Green', 'score': 1},
       ],
     },
     {
@@ -48,6 +49,7 @@ class _MyAppState extends State<MyApp> {
 
   var _questionIndex = 0;
   var _totalScore = 0;
+  var _inputText = 'The Quick Brown Fox Jumps Over the Lazy Dog';
 
   void _answerQuestion(int score) {
     _totalScore += score;
@@ -72,16 +74,28 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
+          titleTextStyle: TextStyle(
+            color: Colors.white,
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            fontFamily: 'FiraCode',
+          ),
           title: Text('My First App'),
         ),
-        body: _questionIndex < _questions.length
-            ? Quiz(
-                answerQuestion: _answerQuestion,
-                questionIndex: _questionIndex,
-                questions: _questions,
-              )
-            : Result(),
+        body: Column(
+          children: [
+            _questionIndex < _questions.length
+                ? Quiz(
+                    answerQuestion: _answerQuestion,
+                    questionIndex: _questionIndex,
+                    questions: _questions,
+                  )
+                : Result(_totalScore),
+            CText(_inputText),
+          ],
+        ),
         floatingActionButton: Reset(_reset),
+        floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       ),
     );
   }
